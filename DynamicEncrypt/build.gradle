@@ -1,0 +1,60 @@
+apply plugin: 'com.android.dynamic-feature'
+
+android {
+    compileSdkVersion 28
+    
+
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+    }
+
+    signingConfigs {
+        release
+        config
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            minifyEnabled false
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
+            testProguardFile 'tests-proguard.cfg'
+        }
+
+        release {
+            signingConfig signingConfigs.release
+
+            minifyEnabled false
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+    flavorDimensions 'static'
+    productFlavors {
+        fdroid {
+            dimension = 'static'
+        }
+        play {
+            dimension = 'static'
+            signingConfig signingConfigs.config
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':base')
+}

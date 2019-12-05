@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    package="com.example.dynamicencrypt">
+
+    <dist:module
+        dist:instant="false"
+        dist:title="@string/title_dynamicencrypt">
+        <dist:delivery>
+            <dist:on-demand />
+        </dist:delivery>
+
+        <dist:fusing dist:include="true" />
+    </dist:module>
+
+    <application>
+        <service android:name="com.example.dynamicencrypt.EncryptService"
+            android:label="@string/crypt_encrypting"
+            />
+        <service android:name="com.example.dynamicencrypt.DecryptService"
+            android:label="DecryptService"
+            />
+    </application>
+
+</manifest>

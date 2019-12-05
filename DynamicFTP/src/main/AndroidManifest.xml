@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.dynamicftp">
+
+    <dist:module
+        dist:instant="false"
+        dist:title="@string/title_dynamicftp">
+        <dist:delivery>
+            <dist:on-demand />
+        </dist:delivery>
+
+        <dist:fusing dist:include="true" />
+    </dist:module>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:banner="@drawable/about_header"
+        android:label="@string/appbar_name"
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:label"
+        android:theme="@style/aboutDark">
+        <activity
+            android:name=".ftpTest"
+            android:label="@string/title_activity_ftp_test"
+            android:theme="@style/aboutDark"
+            ></activity>
+        <activity
+            android:name=".FtpActivity"
+            android:label="FTP Server"
+            android:theme="@style/overflow_light" />
+
+        <service
+            android:name=".ftp.FtpService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".ftp.FtpTileService"
+            android:icon="@drawable/ic_ftp_dark"
+            android:label="@string/ftp"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name=".ftp.FtpReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.amaze.filemanager.services.ftpservice.FTPReceiver.ACTION_START_FTPSERVER" />
+                <action android:name="com.amaze.filemanager.services.ftpservice.FTPReceiver.ACTION_STOP_FTPSERVER" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

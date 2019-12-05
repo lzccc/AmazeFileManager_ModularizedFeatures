@@ -1,1 +1,1 @@
-include ':app', ':commons_compress_7z'
+include ':base', ':commons_compress_7z', ':DynamicAbout', ':DynamicEncrypt', ':DynamicFTP'

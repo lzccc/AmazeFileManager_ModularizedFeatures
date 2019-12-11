@@ -5,20 +5,21 @@ android {
 
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
     }
     signingConfigs {
-        release
+        release{}
         config
     }
 
     buildTypes {
         debug {
             applicationIdSuffix ".debug"
+            signingConfig signingConfigs.release
             minifyEnabled false
             //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
             testProguardFile 'tests-proguard.cfg'

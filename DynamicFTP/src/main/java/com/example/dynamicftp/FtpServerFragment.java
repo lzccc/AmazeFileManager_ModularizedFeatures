@@ -27,7 +27,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -56,11 +55,10 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import com.amaze.filemanager.activities.MainActivity;
 import com.example.dynamicftp.ftp.FtpService;
-import com.amaze.filemanager.utils.OneCharacterCharSequence;
-import com.amaze.filemanager.utils.Utils;
-import com.amaze.filemanager.utils.files.CryptUtil;
+import com.amaze.filemanagerZichongTest.utils.OneCharacterCharSequence;
+import com.amaze.filemanagerZichongTest.utils.Utils;
+import com.amaze.filemanagerZichongTest.utils.files.CryptUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -122,13 +120,13 @@ public class FtpServerFragment extends Fragment {
         Log.d("FtpFra", "Jordan3");
         switch (mainActivity.getAppTheme().getSimpleTheme()) {
             case LIGHT:
-                startDividerView.setBackgroundColor(Utils.getColor(getContext(), com.amaze.filemanager.R.color.divider));
-                statusDividerView.setBackgroundColor(Utils.getColor(getContext(), com.amaze.filemanager.R.color.divider));
+                startDividerView.setBackgroundColor(Utils.getColor(getContext(), com.amaze.filemanagerZichongTest.R.color.divider));
+                statusDividerView.setBackgroundColor(Utils.getColor(getContext(), com.amaze.filemanagerZichongTest.R.color.divider));
                 break;
             case DARK:
             case BLACK:
-                startDividerView.setBackgroundColor(Utils.getColor(getContext(), com.amaze.filemanager.R.color.divider_dark_card));
-                statusDividerView.setBackgroundColor(Utils.getColor(getContext(), com.amaze.filemanager.R.color.divider_dark_card));
+                startDividerView.setBackgroundColor(Utils.getColor(getContext(), com.amaze.filemanagerZichongTest.R.color.divider_dark_card));
+                statusDividerView.setBackgroundColor(Utils.getColor(getContext(), com.amaze.filemanagerZichongTest.R.color.divider_dark_card));
                 break;
         }
 
@@ -155,7 +153,7 @@ public class FtpServerFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setRetainInstance(true);
-        //mainActivity.getAppbar().setTitle(com.amaze.filemanager.R.string.ftp);
+        //mainActivity.getAppbar().setTitle(com.amaze.filemanagerZichongTest.R.string.ftp);
         //mainActivity.floatingActionButton.getMenuButton().hide();
         //mainActivity.getAppbar().getBottomBar().setVisibility(View.GONE);
         mainActivity.supportInvalidateOptionsMenu();
@@ -175,7 +173,7 @@ public class FtpServerFragment extends Fragment {
                 int currentFtpPort = getDefaultPortFromPreferences();
 
                 new MaterialDialog.Builder(getContext())
-                        .input(getString(com.amaze.filemanager.R.string.ftp_port_edit_menu_title), Integer.toString(currentFtpPort), true, (dialog, input) -> {})
+                        .input(getString(com.amaze.filemanagerZichongTest.R.string.ftp_port_edit_menu_title), Integer.toString(currentFtpPort), true, (dialog, input) -> {})
                         .inputType(InputType.TYPE_CLASS_NUMBER)
                         .onPositive((dialog, which) -> {
                             EditText editText = dialog.getInputEditText();
@@ -184,24 +182,24 @@ public class FtpServerFragment extends Fragment {
 
                                 int portNumber = Integer.parseInt(name);
                                 if (portNumber < 1024) {
-                                    Toast.makeText(getActivity(), com.amaze.filemanager.R.string.ftp_port_change_error_invalid, Toast.LENGTH_SHORT)
+                                    Toast.makeText(getActivity(), com.amaze.filemanagerZichongTest.R.string.ftp_port_change_error_invalid, Toast.LENGTH_SHORT)
                                             .show();
                                 } else {
                                     changeFTPServerPort(portNumber);
-                                    Toast.makeText(getActivity(), com.amaze.filemanager.R.string.ftp_port_change_success, Toast.LENGTH_SHORT)
+                                    Toast.makeText(getActivity(), com.amaze.filemanagerZichongTest.R.string.ftp_port_change_success, Toast.LENGTH_SHORT)
                                             .show();
                                 }
                             }
                         })
-                        .positiveText(getString(com.amaze.filemanager.R.string.change).toUpperCase())
-                        .negativeText(com.amaze.filemanager.R.string.cancel)
+                        .positiveText(getString(com.amaze.filemanagerZichongTest.R.string.change).toUpperCase())
+                        .negativeText(com.amaze.filemanagerZichongTest.R.string.cancel)
                         .build()
                         .show();
                 return true;
             case R.id.ftp_path:
                 MaterialDialog.Builder dialogBuilder = new MaterialDialog.Builder(getContext());
-                dialogBuilder.title(getString(com.amaze.filemanager.R.string.ftp_path));
-                dialogBuilder.input(getString(com.amaze.filemanager.R.string.ftp_path_hint),
+                dialogBuilder.title(getString(com.amaze.filemanagerZichongTest.R.string.ftp_path));
+                dialogBuilder.input(getString(com.amaze.filemanagerZichongTest.R.string.ftp_path_hint),
                         getDefaultPathFromPreferences(),
                         false, (dialog, input) -> {});
                 dialogBuilder.onPositive((dialog, which) -> {
@@ -214,7 +212,7 @@ public class FtpServerFragment extends Fragment {
 
                             changeFTPServerPath(pathFile.getPath());
 
-                            Toast.makeText(getActivity(), com.amaze.filemanager.R.string.ftp_path_change_success,
+                            Toast.makeText(getActivity(), com.amaze.filemanagerZichongTest.R.string.ftp_path_change_success,
                                     Toast.LENGTH_SHORT)
                                     .show();
                         } else {
@@ -223,13 +221,13 @@ public class FtpServerFragment extends Fragment {
                             if (pathParentFile.exists() && pathParentFile.isDirectory()) {
 
                                 changeFTPServerPath(pathParentFile.getPath());
-                                Toast.makeText(getActivity(), com.amaze.filemanager.R.string.ftp_path_change_success,
+                                Toast.makeText(getActivity(), com.amaze.filemanagerZichongTest.R.string.ftp_path_change_success,
                                         Toast.LENGTH_SHORT)
                                         .show();
                             } else {
                                 // don't have access, print error
 
-                                Toast.makeText(getActivity(), com.amaze.filemanager.R.string.ftp_path_change_error_invalid,
+                                Toast.makeText(getActivity(), com.amaze.filemanagerZichongTest.R.string.ftp_path_change_error_invalid,
                                         Toast.LENGTH_SHORT)
                                         .show();
                             }
@@ -237,8 +235,8 @@ public class FtpServerFragment extends Fragment {
                     }
                 });
 
-                dialogBuilder.positiveText(getString(com.amaze.filemanager.R.string.change).toUpperCase())
-                        .negativeText(com.amaze.filemanager.R.string.cancel)
+                dialogBuilder.positiveText(getString(com.amaze.filemanagerZichongTest.R.string.change).toUpperCase())
+                        .negativeText(com.amaze.filemanagerZichongTest.R.string.cancel)
                         .build()
                         .show();
                 return true;
@@ -246,12 +244,12 @@ public class FtpServerFragment extends Fragment {
                 MaterialDialog.Builder loginDialogBuilder = new MaterialDialog.Builder(getContext());
 
                 LayoutInflater inflater = getActivity().getLayoutInflater();
-                View rootView = inflater.inflate(com.amaze.filemanager.R.layout.dialog_ftp_login, null);
+                View rootView = inflater.inflate(com.amaze.filemanagerZichongTest.R.layout.dialog_ftp_login, null);
                 initLoginDialogViews(rootView);
 
                 loginDialogBuilder.customView(rootView, true);
 
-                loginDialogBuilder.title(getString(com.amaze.filemanager.R.string.ftp_login));
+                loginDialogBuilder.title(getString(com.amaze.filemanagerZichongTest.R.string.ftp_login));
 
                 loginDialogBuilder.onPositive((dialog, which) -> {
                     if (mAnonymousCheckBox.isChecked()) {
@@ -262,9 +260,9 @@ public class FtpServerFragment extends Fragment {
                     } else {
 
                         if (passwordEditText.getText().toString().equals("")) {
-                            passwordTextInput.setError(getString(com.amaze.filemanager.R.string.field_empty));
+                            passwordTextInput.setError(getString(com.amaze.filemanagerZichongTest.R.string.field_empty));
                         } else if (usernameEditText.getText().toString().equals("")) {
-                            usernameTextInput.setError(getString(com.amaze.filemanager.R.string.field_empty));
+                            usernameTextInput.setError(getString(com.amaze.filemanagerZichongTest.R.string.field_empty));
                         } else {
 
                             // password and username field not empty, let's set them to preferences
@@ -278,8 +276,8 @@ public class FtpServerFragment extends Fragment {
                     } else setSecurePreference(false);
                 });
 
-                loginDialogBuilder.positiveText(getString(com.amaze.filemanager.R.string.set).toUpperCase())
-                        .negativeText(getString(com.amaze.filemanager.R.string.cancel))
+                loginDialogBuilder.positiveText(getString(com.amaze.filemanagerZichongTest.R.string.set).toUpperCase())
+                        .negativeText(getString(com.amaze.filemanagerZichongTest.R.string.cancel))
                         .build()
                         .show();
 
@@ -287,10 +285,10 @@ public class FtpServerFragment extends Fragment {
             case R.id.ftp_timeout:
                 MaterialDialog.Builder timeoutBuilder = new MaterialDialog.Builder(getActivity());
 
-                timeoutBuilder.title(getString(com.amaze.filemanager.R.string.ftp_timeout) + " (" +
-                        getResources().getString(com.amaze.filemanager.R.string.ftp_seconds) + ")");
+                timeoutBuilder.title(getString(com.amaze.filemanagerZichongTest.R.string.ftp_timeout) + " (" +
+                        getResources().getString(com.amaze.filemanagerZichongTest.R.string.ftp_seconds) + ")");
                 timeoutBuilder.input(String.valueOf(FtpService.DEFAULT_TIMEOUT + " " +
-                                getResources().getString(com.amaze.filemanager.R.string.ftp_seconds)), String.valueOf(getFTPTimeout()),
+                                getResources().getString(com.amaze.filemanagerZichongTest.R.string.ftp_seconds)), String.valueOf(getFTPTimeout()),
                         true, (dialog, input) -> {
                             boolean isInputInteger;
                             try {
@@ -306,8 +304,8 @@ public class FtpServerFragment extends Fragment {
                             else
                                 setFTPTimeout(Integer.valueOf(input.toString()));
                         });
-                timeoutBuilder.positiveText(getResources().getString(com.amaze.filemanager.R.string.set).toUpperCase())
-                        .negativeText(getResources().getString(com.amaze.filemanager.R.string.cancel))
+                timeoutBuilder.positiveText(getResources().getString(com.amaze.filemanagerZichongTest.R.string.set).toUpperCase())
+                        .negativeText(getResources().getString(com.amaze.filemanagerZichongTest.R.string.cancel))
                         .build()
                         .show();
                 return true;
@@ -337,7 +335,7 @@ public class FtpServerFragment extends Fragment {
                 statusText.setText(spannedStatusNoConnection);
                 ftpBtn.setEnabled(true);
                 ftpBtn.setEnabled(false);
-                ftpBtn.setText(getResources().getString(com.amaze.filemanager.R.string.start_ftp).toUpperCase());
+                ftpBtn.setText(getResources().getString(com.amaze.filemanagerZichongTest.R.string.start_ftp).toUpperCase());
             }
         }
     };
@@ -354,20 +352,20 @@ public class FtpServerFragment extends Fragment {
                     statusText.setText(spannedStatusConnected);
                 }
                 url.setText(spannedStatusUrl);
-                ftpBtn.setText(getResources().getString(com.amaze.filemanager.R.string.stop_ftp).toUpperCase());
+                ftpBtn.setText(getResources().getString(com.amaze.filemanagerZichongTest.R.string.stop_ftp).toUpperCase());
                 FtpNotification.updateNotification(getContext(), STARTED_FROM_TILE.equals(signal));
                 break;
             case FAILED_TO_START:
                 statusText.setText(spannedStatusNotRunning);
-                Toast.makeText(getContext(), getResources().getString(com.amaze.filemanager.R.string.unknown_error), Toast.LENGTH_LONG).show();
-                ftpBtn.setText(getResources().getString(com.amaze.filemanager.R.string.start_ftp).toUpperCase());
+                Toast.makeText(getContext(), getResources().getString(com.amaze.filemanagerZichongTest.R.string.unknown_error), Toast.LENGTH_LONG).show();
+                ftpBtn.setText(getResources().getString(com.amaze.filemanagerZichongTest.R.string.start_ftp).toUpperCase());
                 url.setText("URL: ");
                 break;
 
             case STOPPED:
                 statusText.setText(spannedStatusNotRunning);
                 url.setText("URL: ");
-                ftpBtn.setText(getResources().getString(com.amaze.filemanager.R.string.start_ftp).toUpperCase());
+                ftpBtn.setText(getResources().getString(com.amaze.filemanagerZichongTest.R.string.start_ftp).toUpperCase());
                 break;
         }
     }
@@ -419,23 +417,23 @@ public class FtpServerFragment extends Fragment {
                 ftpBtn.setEnabled(true);
             }
             url.setText("URL: ");
-            ftpBtn.setText(getResources().getString(com.amaze.filemanager.R.string.start_ftp).toUpperCase());
+            ftpBtn.setText(getResources().getString(com.amaze.filemanagerZichongTest.R.string.start_ftp).toUpperCase());
 
         } else {
             accentColor = mainActivity.getAccent();
             url.setText(spannedStatusUrl);
             statusText.setText(spannedStatusConnected);
             ftpBtn.setEnabled(true);
-            ftpBtn.setText(getResources().getString(com.amaze.filemanager.R.string.stop_ftp).toUpperCase());
+            ftpBtn.setText(getResources().getString(com.amaze.filemanagerZichongTest.R.string.stop_ftp).toUpperCase());
         }
 
         final String passwordDecrypted = getPasswordFromPreferences();
         final CharSequence passwordBulleted = new OneCharacterCharSequence('\u25CF', passwordDecrypted.length());
 
-        username.setText(getResources().getString(com.amaze.filemanager.R.string.username) + ": " + getUsernameFromPreferences());
-        password.setText(getResources().getString(com.amaze.filemanager.R.string.password) + ": " + passwordBulleted);
+        username.setText(getResources().getString(com.amaze.filemanagerZichongTest.R.string.username) + ": " + getUsernameFromPreferences());
+        password.setText(getResources().getString(com.amaze.filemanagerZichongTest.R.string.password) + ": " + passwordBulleted);
 
-        ftpPasswordVisibleButton.setImageDrawable(getResources().getDrawable(com.amaze.filemanager.R.drawable.ic_eye_grey600_24dp));
+        ftpPasswordVisibleButton.setImageDrawable(getResources().getDrawable(com.amaze.filemanagerZichongTest.R.drawable.ic_eye_grey600_24dp));
 
         if (passwordDecrypted.equals("")) {
             ftpPasswordVisibleButton.setVisibility(View.GONE);
@@ -446,19 +444,19 @@ public class FtpServerFragment extends Fragment {
         ftpPasswordVisibleButton.setOnClickListener(v -> {
             if (password.getText().toString().contains("\u25CF")) {
                 // password was not visible, let's make it visible
-                password.setText(getResources().getString(com.amaze.filemanager.R.string.password) + ": " +
+                password.setText(getResources().getString(com.amaze.filemanagerZichongTest.R.string.password) + ": " +
                         passwordDecrypted);
-                ftpPasswordVisibleButton.setImageDrawable(getResources().getDrawable(com.amaze.filemanager.R.drawable.ic_eye_off_grey600_24dp));
+                ftpPasswordVisibleButton.setImageDrawable(getResources().getDrawable(com.amaze.filemanagerZichongTest.R.drawable.ic_eye_off_grey600_24dp));
             } else {
                 // password was visible, let's hide it
-                password.setText(getResources().getString(com.amaze.filemanager.R.string.password) + ": " + passwordBulleted);
-                ftpPasswordVisibleButton.setImageDrawable(getResources().getDrawable(com.amaze.filemanager.R.drawable.ic_eye_grey600_24dp));
+                password.setText(getResources().getString(com.amaze.filemanagerZichongTest.R.string.password) + ": " + passwordBulleted);
+                ftpPasswordVisibleButton.setImageDrawable(getResources().getDrawable(com.amaze.filemanagerZichongTest.R.drawable.ic_eye_grey600_24dp));
             }
         });
 
-        port.setText(getResources().getString(com.amaze.filemanager.R.string.ftp_port) + ": " +
+        port.setText(getResources().getString(com.amaze.filemanagerZichongTest.R.string.ftp_port) + ": " +
                 getDefaultPortFromPreferences());
-        sharedPath.setText(getResources().getString(com.amaze.filemanager.R.string.ftp_path) + ": " +
+        sharedPath.setText(getResources().getString(com.amaze.filemanagerZichongTest.R.string.ftp_path) + ": " +
                 getDefaultPathFromPreferences());
     }
 
@@ -471,35 +469,35 @@ public class FtpServerFragment extends Fragment {
 
         if(ftpAddress == null) {
             ftpAddress = "";
-            Toast.makeText(getContext(), getResources().getString(com.amaze.filemanager.R.string.local_inet_addr_error), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getResources().getString(com.amaze.filemanagerZichongTest.R.string.local_inet_addr_error), Toast.LENGTH_SHORT).show();
         }
 
-        String statusHead = getResources().getString(com.amaze.filemanager.R.string.ftp_status_title) + ": ";
+        String statusHead = getResources().getString(com.amaze.filemanagerZichongTest.R.string.ftp_status_title) + ": ";
 
         spannedStatusConnected = Html.fromHtml(statusHead + "<b>&nbsp;&nbsp;" +
                 "<font color='" + accentColor + "'>"
-                + getResources().getString(com.amaze.filemanager.R.string.ftp_status_running) + "</font></b>");
+                + getResources().getString(com.amaze.filemanagerZichongTest.R.string.ftp_status_running) + "</font></b>");
         spannedStatusUrl = Html.fromHtml("URL:&nbsp;" + ftpAddress);
         spannedStatusNoConnection = Html.fromHtml(statusHead + "<b>&nbsp;&nbsp;&nbsp;&nbsp;" +
                 "<font color='" + Utils.getColor(getContext(), android.R.color.holo_red_light) + "'>"
-                + getResources().getString(com.amaze.filemanager.R.string.ftp_status_no_connection) + "</font></b>");
+                + getResources().getString(com.amaze.filemanagerZichongTest.R.string.ftp_status_no_connection) + "</font></b>");
 
         spannedStatusNotRunning = Html.fromHtml(statusHead + "<b>&nbsp;&nbsp;&nbsp;&nbsp;" +
-                getResources().getString(com.amaze.filemanager.R.string.ftp_status_not_running) + "</b>");
+                getResources().getString(com.amaze.filemanagerZichongTest.R.string.ftp_status_not_running) + "</b>");
         spannedStatusSecure = Html.fromHtml(statusHead + "<b>&nbsp;&nbsp;&nbsp;&nbsp;" +
                 "<font color='" + Utils.getColor(getContext(), android.R.color.holo_green_light) + "'>"
-                + getResources().getString(com.amaze.filemanager.R.string.ftp_status_secure_connection) + "</font></b>");
+                + getResources().getString(com.amaze.filemanagerZichongTest.R.string.ftp_status_secure_connection) + "</font></b>");
         spannedStatusUrl = Html.fromHtml("URL:&nbsp;" + ftpAddress);
     }
 
     private void initLoginDialogViews(View loginDialogView) {
 
-        usernameEditText = loginDialogView.findViewById(com.amaze.filemanager.R.id.edit_text_dialog_ftp_username);
-        passwordEditText = loginDialogView.findViewById(com.amaze.filemanager.R.id.edit_text_dialog_ftp_password);
-        usernameTextInput = loginDialogView.findViewById(com.amaze.filemanager.R.id.text_input_dialog_ftp_username);
-        passwordTextInput = loginDialogView.findViewById(com.amaze.filemanager.R.id.text_input_dialog_ftp_password);
-        mAnonymousCheckBox = loginDialogView.findViewById(com.amaze.filemanager.R.id.checkbox_ftp_anonymous);
-        mSecureCheckBox = loginDialogView.findViewById(com.amaze.filemanager.R.id.checkbox_ftp_secure);
+        usernameEditText = loginDialogView.findViewById(com.amaze.filemanagerZichongTest.R.id.edit_text_dialog_ftp_username);
+        passwordEditText = loginDialogView.findViewById(com.amaze.filemanagerZichongTest.R.id.edit_text_dialog_ftp_password);
+        usernameTextInput = loginDialogView.findViewById(com.amaze.filemanagerZichongTest.R.id.text_input_dialog_ftp_username);
+        passwordTextInput = loginDialogView.findViewById(com.amaze.filemanagerZichongTest.R.id.text_input_dialog_ftp_password);
+        mAnonymousCheckBox = loginDialogView.findViewById(com.amaze.filemanagerZichongTest.R.id.checkbox_ftp_anonymous);
+        mSecureCheckBox = loginDialogView.findViewById(com.amaze.filemanagerZichongTest.R.id.checkbox_ftp_secure);
 
         mAnonymousCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
@@ -557,7 +555,7 @@ public class FtpServerFragment extends Fragment {
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
 
-            Toast.makeText(getContext(), getResources().getString(com.amaze.filemanager.R.string.error), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getResources().getString(com.amaze.filemanagerZichongTest.R.string.error), Toast.LENGTH_SHORT).show();
             // can't decrypt the password saved in preferences, remove the preference altogether
             mainActivity.getPrefs().edit().putString(FtpService.KEY_PREFERENCE_PASSWORD, "").apply();
             return "";
@@ -598,7 +596,7 @@ public class FtpServerFragment extends Fragment {
             mainActivity.getPrefs().edit().putString(FtpService.KEY_PREFERENCE_PASSWORD, CryptUtil.encryptPassword(getContext(), password)).apply();
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
-            Toast.makeText(getContext(), getResources().getString(com.amaze.filemanager.R.string.error), Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), getResources().getString(com.amaze.filemanagerZichongTest.R.string.error), Toast.LENGTH_LONG).show();
         }
         updateStatus();
     }

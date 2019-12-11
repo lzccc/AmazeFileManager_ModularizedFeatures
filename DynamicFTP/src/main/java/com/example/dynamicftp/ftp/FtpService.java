@@ -46,10 +46,10 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.amaze.filemanager.R;
+import com.amaze.filemanagerZichongTest.R;
 import com.example.dynamicftp.FtpNotification;
-import com.amaze.filemanager.ui.notifications.NotificationConstants;
-import com.amaze.filemanager.utils.files.CryptUtil;
+import com.amaze.filemanagerZichongTest.ui.notifications.NotificationConstants;
+import com.amaze.filemanagerZichongTest.utils.files.CryptUtil;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -105,8 +105,8 @@ public class FtpService extends Service implements Runnable {
     }
 
     // RequestStartStopReceiver listens for these actions to start/stop this server
-    static public final String ACTION_START_FTPSERVER = "com.amaze.filemanager.services.ftpservice.FTPReceiver.ACTION_START_FTPSERVER";
-    static public final String ACTION_STOP_FTPSERVER = "com.amaze.filemanager.services.ftpservice.FTPReceiver.ACTION_STOP_FTPSERVER";
+    static public final String ACTION_START_FTPSERVER = "com.amaze.filemanagerZichongTest.services.ftpservice.FTPReceiver.ACTION_START_FTPSERVER";
+    static public final String ACTION_STOP_FTPSERVER = "com.amaze.filemanagerZichongTest.services.ftpservice.FTPReceiver.ACTION_STOP_FTPSERVER";
 
     static public final String TAG_STARTED_BY_TILE = "started_by_tile";  // attribute of action_started, used by notification
 

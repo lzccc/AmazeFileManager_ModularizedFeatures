@@ -74,7 +74,7 @@
         
         <include layout="@layout/layout_fab"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-    <com.amaze.filemanager.ui.views.drawer.CustomNavigationView
+    <com.amaze.filemanagerZichongTest.ui.views.drawer.CustomNavigationView
         android:id="@+id/navigation"
         android:layout_width="@dimen/drawer_width"
         android:layout_height="match_parent"

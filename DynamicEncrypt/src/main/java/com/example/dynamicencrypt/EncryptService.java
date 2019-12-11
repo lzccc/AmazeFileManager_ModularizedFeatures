@@ -13,29 +13,22 @@ import android.preference.PreferenceManager;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
-import com.amaze.filemanager.R;
-import com.amaze.filemanager.activities.MainActivity;
-import com.amaze.filemanager.adapters.data.LayoutElementParcelable;
-import com.amaze.filemanager.asynchronous.services.AbstractProgressiveService;
-import com.amaze.filemanager.filesystem.FileUtil;
-import com.amaze.filemanager.filesystem.HybridFile;
-import com.amaze.filemanager.filesystem.HybridFileParcelable;
-import com.amaze.filemanager.fragments.preference_fragments.PreferencesConstants;
-import com.amaze.filemanager.ui.dialogs.GeneralDialogCreation;
-import com.amaze.filemanager.ui.notifications.NotificationConstants;
-import com.amaze.filemanager.utils.application.AppConfig;
-import com.amaze.filemanager.utils.files.CryptUtil;
-import com.amaze.filemanager.utils.DatapointParcelable;
-import com.amaze.filemanager.utils.ObtainableServiceBinder;
-import com.amaze.filemanager.utils.OpenMode;
-import com.amaze.filemanager.utils.ProgressHandler;
-import com.amaze.filemanager.utils.ServiceWatcherUtil;
-import com.amaze.filemanager.utils.files.EncryptDecryptUtils;
+import com.amaze.filemanagerZichongTest.R;
+import com.amaze.filemanagerZichongTest.activities.MainActivity;
+import com.amaze.filemanagerZichongTest.asynchronous.services.AbstractProgressiveService;
+import com.amaze.filemanagerZichongTest.filesystem.FileUtil;
+import com.amaze.filemanagerZichongTest.filesystem.HybridFile;
+import com.amaze.filemanagerZichongTest.filesystem.HybridFileParcelable;
+import com.amaze.filemanagerZichongTest.ui.notifications.NotificationConstants;
+import com.amaze.filemanagerZichongTest.utils.application.AppConfig;
+import com.amaze.filemanagerZichongTest.utils.files.CryptUtil;
+import com.amaze.filemanagerZichongTest.utils.DatapointParcelable;
+import com.amaze.filemanagerZichongTest.utils.ObtainableServiceBinder;
+import com.amaze.filemanagerZichongTest.utils.OpenMode;
+import com.amaze.filemanagerZichongTest.utils.ProgressHandler;
+import com.amaze.filemanagerZichongTest.utils.ServiceWatcherUtil;
 
-import java.io.IOException;
-import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 
 /**

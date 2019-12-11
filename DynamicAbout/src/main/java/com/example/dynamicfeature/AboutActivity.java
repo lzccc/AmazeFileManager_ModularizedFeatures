@@ -12,10 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.amaze.filemanager.activities.superclasses.BasicActivity;
-import com.amaze.filemanager.utils.Utils;
+import com.amaze.filemanagerZichongTest.activities.superclasses.BasicActivity;
+import com.amaze.filemanagerZichongTest.utils.Utils;
 
-import com.amaze.filemanager.utils.theme.AppTheme;
+import com.amaze.filemanagerZichongTest.utils.theme.AppTheme;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.snackbar.Snackbar;
@@ -53,18 +53,18 @@ public class AboutActivity extends BasicActivity implements View.OnClickListener
     private static final String URL_REPO_ISSUES = "https://github.com/TeamAmaze/AmazeFileManager/issues";
     private static final String URL_REPO_TRANSLATE = "https://www.transifex.com/amaze/amaze-file-manager-1/";
     private static final String URL_REPO_XDA = "http://forum.xda-developers.com/android/apps-games/app-amaze-file-managermaterial-theme-t2937314";
-    private static final String URL_REPO_RATE = "market://details?id=com.amaze.filemanager";
+    private static final String URL_REPO_RATE = "market://details?id=com.amaze.filemanagerZichongTest";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if (getAppTheme().equals(AppTheme.DARK)) {
-            setTheme(com.amaze.filemanager.R.style.aboutDark);
+            setTheme(com.amaze.filemanagerZichongTest.R.style.aboutDark);
         } else if (getAppTheme().equals(AppTheme.BLACK)) {
-            setTheme(com.amaze.filemanager.R.style.aboutBlack);
+            setTheme(com.amaze.filemanagerZichongTest.R.style.aboutBlack);
         } else {
-            setTheme(com.amaze.filemanager.R.style.aboutLight);
+            setTheme(com.amaze.filemanagerZichongTest.R.style.aboutLight);
         }
 
         setContentView(R.layout.activity_about);
@@ -82,18 +82,18 @@ public class AboutActivity extends BasicActivity implements View.OnClickListener
         Toolbar mToolbar = findViewById(R.id.toolBar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(com.amaze.filemanager.R.drawable.md_nav_back));
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(com.amaze.filemanagerZichongTest.R.drawable.md_nav_back));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         switchIcons();
 
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
-                com.amaze.filemanager.R.drawable.about_header);
+                com.amaze.filemanagerZichongTest.R.drawable.about_header);
 
         // It will generate colors based on the image in an AsyncTask.
         Palette.from(bitmap).generate(palette -> {
-            int mutedColor = palette.getMutedColor(Utils.getColor(AboutActivity.this, com.amaze.filemanager.R.color.primary_blue));
-            int darkMutedColor = palette.getDarkMutedColor(Utils.getColor(AboutActivity.this, com.amaze.filemanager.R.color.primary_blue));
+            int mutedColor = palette.getMutedColor(Utils.getColor(AboutActivity.this, com.amaze.filemanagerZichongTest.R.color.primary_blue));
+            int darkMutedColor = palette.getDarkMutedColor(Utils.getColor(AboutActivity.this, com.amaze.filemanagerZichongTest.R.color.primary_blue));
             mCollapsingToolbarLayout.setContentScrimColor(mutedColor);
             mCollapsingToolbarLayout.setStatusBarScrimColor(darkMutedColor);
         });
@@ -141,8 +141,8 @@ public class AboutActivity extends BasicActivity implements View.OnClickListener
     private void switchIcons() {
         if (getAppTheme().equals(AppTheme.DARK) || getAppTheme().equals(AppTheme.BLACK)) {
             // dark theme
-            mAuthorsDivider.setBackgroundColor(Utils.getColor(this, com.amaze.filemanager.R.color.divider_dark_card));
-            mDeveloper1Divider.setBackgroundColor(Utils.getColor(this, com.amaze.filemanager.R.color.divider_dark_card));
+            mAuthorsDivider.setBackgroundColor(Utils.getColor(this, com.amaze.filemanagerZichongTest.R.color.divider_dark_card));
+            mDeveloper1Divider.setBackgroundColor(Utils.getColor(this, com.amaze.filemanagerZichongTest.R.color.divider_dark_card));
         }
     }
 
@@ -152,7 +152,7 @@ public class AboutActivity extends BasicActivity implements View.OnClickListener
             case R.id.relative_layout_version:
                 mCount++;
                 if (mCount >= 5) {
-                    String text = getResources().getString(com.amaze.filemanager.R.string.easter_egg_title) + " : " + mCount;
+                    String text = getResources().getString(com.amaze.filemanagerZichongTest.R.string.easter_egg_title) + " : " + mCount;
 
                     if(snackbar != null && snackbar.isShown()) {
                         snackbar.setText(text);
@@ -178,13 +178,13 @@ public class AboutActivity extends BasicActivity implements View.OnClickListener
             case R.id.relative_layout_licenses:
                 LibsBuilder libsBuilder = new LibsBuilder()
                         .withLibraries("commonscompress", "apachemina", "volley")//Not autodetected for some reason
-                        .withActivityTitle(getString( com.amaze.filemanager.R.string.libraries))
+                        .withActivityTitle(getString( com.amaze.filemanagerZichongTest.R.string.libraries))
                         .withAboutIconShown(true)
                         .withAboutVersionShownName(true)
                         .withAboutVersionShownCode(false)
-                        .withAboutDescription(getString(com.amaze.filemanager.R.string.about_amaze))
-                        .withAboutSpecial1(getString(com.amaze.filemanager.R.string.license))
-                        .withAboutSpecial1Description(getString(com.amaze.filemanager.R.string.amaze_license))
+                        .withAboutDescription(getString(com.amaze.filemanagerZichongTest.R.string.about_amaze))
+                        .withAboutSpecial1(getString(com.amaze.filemanagerZichongTest.R.string.license))
+                        .withAboutSpecial1Description(getString(com.amaze.filemanagerZichongTest.R.string.amaze_license))
                         .withLicenseShown(true);
 
                 switch(getAppTheme().getSimpleTheme()) {
@@ -195,7 +195,7 @@ public class AboutActivity extends BasicActivity implements View.OnClickListener
                         libsBuilder.withActivityStyle(Libs.ActivityStyle.DARK);
                         break;
                     case BLACK:
-                        libsBuilder.withActivityTheme(com.amaze.filemanager.R.style.AboutLibrariesTheme_Black);
+                        libsBuilder.withActivityTheme(com.amaze.filemanagerZichongTest.R.style.AboutLibrariesTheme_Black);
                         break;
                 }
 

@@ -1,4 +1,4 @@
-package com.amaze.filemanager.utils;
+package com.amaze.filemanagerZichongTest.utils;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.amaze.filemanager.R;
-import com.amaze.filemanager.activities.superclasses.BasicActivity;
-import com.amaze.filemanager.adapters.holders.DonationViewHolder;
+import com.amaze.filemanagerZichongTest.R;
+import com.amaze.filemanagerZichongTest.activities.superclasses.BasicActivity;
+import com.amaze.filemanagerZichongTest.adapters.holders.DonationViewHolder;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingFlowParams;

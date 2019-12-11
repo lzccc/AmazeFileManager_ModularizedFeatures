@@ -21,7 +21,7 @@ android {
     }
 
     defaultConfig {
-        //applicationId "com.amaze.filemanager"
+        //applicationId "com.amaze.filemanagerZichongTest"
         minSdkVersion 23
         targetSdkVersion 28
         versionCode 65
@@ -30,10 +30,24 @@ android {
 
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //signingConfig relsigningConfigs.ease
     }
 
     signingConfigs {
-        release
+        debug {
+            storeFile file('C:\\Users\\lizic\\keystores\\upload-keystore.jks')
+            storePassword 'lizichong081'
+            keyAlias = 'upload'
+            keyPassword 'Lizichong20,'
+        }
+        release {
+            storeFile file('C:\\Users\\lizic\\keystores\\upload-keystore.jks')
+            storePassword 'lizichong081'
+            keyAlias = 'upload'
+            keyPassword 'Lizichong20,'
+        }
+        //release
         config
     }
 
@@ -43,6 +57,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
             testProguardFile 'tests-proguard.cfg'
+            signingConfig signingConfigs.debug
         }
 
         release {

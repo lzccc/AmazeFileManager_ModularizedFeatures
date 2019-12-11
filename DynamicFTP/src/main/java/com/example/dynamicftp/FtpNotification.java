@@ -10,9 +10,9 @@ import android.preference.PreferenceManager;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 
-import com.amaze.filemanager.R;
-import com.amaze.filemanager.activities.MainActivity;
-import com.amaze.filemanager.ui.notifications.NotificationConstants;
+import com.amaze.filemanagerZichongTest.R;
+import com.amaze.filemanagerZichongTest.activities.MainActivity;
+import com.amaze.filemanagerZichongTest.ui.notifications.NotificationConstants;
 import com.example.dynamicftp.ftp.FtpService;
 
 import java.net.InetAddress;

@@ -83,7 +83,11 @@ import com.cloudrail.si.services.Box;
 import com.cloudrail.si.services.Dropbox;
 import com.cloudrail.si.services.GoogleDrive;
 import com.cloudrail.si.services.OneDrive;
+import com.google.android.play.core.splitinstall.SplitInstallException;
+import com.google.android.play.core.splitinstall.SplitInstallManager;
+import com.google.android.play.core.splitinstall.SplitInstallManagerFactory;
 import com.google.android.play.core.splitinstall.SplitInstallRequest;
+import com.google.android.play.core.tasks.Task;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -405,7 +409,7 @@ public class Drawer implements NavigationView.OnNavigationItemSelectedListener {
         addNewItem(menu, LASTGROUP, order++, R.string.ftp,
                 new MenuMetadata(() -> {
                     Log.d("FtpT", "zichong");
-                    String ftpModel = "DynamicEncrypt";
+                    String ftpModel = "DynamicFTP";
                     String ftpClass = "com.example.dynamicftp.FtpActivity";
 
                     if(mainActivity.manager.getInstalledModules().contains(ftpModel)){
@@ -422,11 +426,14 @@ public class Drawer implements NavigationView.OnNavigationItemSelectedListener {
                     }else{
                         Set<String> installedModules = mainActivity.manager.getInstalledModules();
                         Log.d("Zichong",installedModules.toArray(new String[0])[0]);
+                        Log.d("zichong", String.valueOf(installedModules.size()));
                         SplitInstallRequest request = SplitInstallRequest.newBuilder()
                                 .addModule(ftpModel)
                                 .build();
 
-                        mainActivity.manager.startInstall(request);
+                        SplitInstallManager manager = SplitInstallManagerFactory.create(mainActivity);
+                        manager.startInstall(request).addOnSuccessListener(sessionId -> { Log.d("Zichong","Module ${moduleAssets} installed"); })
+                                .addOnFailureListener(exception -> { int a = ((SplitInstallException) exception).getErrorCode();  Log.d("Zichong", String.valueOf(a)); });
                     }
                     //FragmentTransaction transaction2 = mainActivity.getSupportFragmentManager().beginTransaction();
                     ///transaction2.replace(R.id.content_frame, new FtpServerFragment());

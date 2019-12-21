@@ -24,8 +24,8 @@ android {
         //applicationId "com.amaze.filemanagerZichongTest"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 65
-        versionName "3.3.0RC1"
+        versionCode 66
+        versionName "66"
         multiDexEnabled true
 
         vectorDrawables.useSupportLibrary = true
@@ -63,7 +63,7 @@ android {
         release {
             signingConfig signingConfigs.release
 
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
         }
     }
